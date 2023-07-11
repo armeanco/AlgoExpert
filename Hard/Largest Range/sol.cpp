@@ -1,17 +1,18 @@
 #include <vector>
-std::vector<int> subarraySort(std::vector<int> array) {
-  std::vector<int> cnt;
-  int mx = 0, nx = 10;
+std::vector<int> largestRange(std::vector<int> array) {
+  if( array.size() == 1 ) return { array[0], array[0] };
+  std::sort(array.begin(), array.end());
+  array.erase(std::unique(array.begin(), array.end()), array.end());
+  int mx = 0;
+  std::vector<std::vector<int>> sequence;
   for( std::size_t i = 0; i < array.size(); ++i ) {
-    for( std::size_t j = i + 1; j < array.size(); ++j ) {
-      if( array[i] > array[j] && j < array.size()) {
-        cnt.push_back(i);
-        cnt.push_back(j);
-        if( j > mx ) mx = j;
-        if( i < nx ) nx = i;
+      std::vector<int> t;
+      for(std::size_t j = i; array[j] + 1 == array[j + 1]; ++j ) {
+          t.push_back(array[j]), i = j;
       }
-    }
+      if( static_cast<int>(t.size()) > mx ) mx = static_cast<int>(t.size());
+      sequence.push_back(t);
   }
-  if( cnt.empty() ) return {-1, -1};
-  return {nx, mx};
+  for( const auto &c : sequence ) if( c.size() == mx ) return {c[0],c[c.size() - 1] + 1};
+  return {};
 }
