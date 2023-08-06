@@ -45,9 +45,7 @@ std::string smallestSubstringContaining(std::string bigString, std::string small
 			int middle = ( low + high ) / 2;
 			if( sequence[middle + 1] > target && sequence[middle] < target ) return middle + 1;
 			else if( sequence[middle] < target ) low = middle + 1;
-			else {
-				high = middle - 1;
-			}
+			else high = middle - 1;
 		}
 		return low;
 	};
