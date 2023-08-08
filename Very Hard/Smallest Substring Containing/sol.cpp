@@ -38,7 +38,7 @@ std::string smallestSubstringContaining(std::string bigString, std::string small
 		return low;
 	};
 	auto position = [&](std::vector<int> sequence, auto target, auto low, auto high) -> int {
-		if( target == 0 || sequence.size() == 1) return 0;
+		if( target == 0 || sequence.size() == 1 ) return 0;
 		if( target > sequence[sequence.size() - 1] ) return sequence.size();
 		while( low <= high ) {
 			int middle = ( low + high ) / 2;
