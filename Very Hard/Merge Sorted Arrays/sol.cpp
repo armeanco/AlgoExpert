@@ -1,6 +1,6 @@
 #include <vector>
 std::vector<int> mergeSortedArrays(std::vector<std::vector<int>> arrays) {
-  std::vector<int> precompute;
+	std::vector<int> precompute;
 	for( std::size_t i = 0; i < 1; ++i )
 		for( std::size_t j = 0; j < arrays[i].size(); ++j ) precompute.push_back(arrays[i][j]);
 	auto position = [&](std::vector<int> array, auto val, auto low, auto high) -> int {
@@ -9,7 +9,7 @@ std::vector<int> mergeSortedArrays(std::vector<std::vector<int>> arrays) {
 			int middle = ( low + high ) / 2;
 			if( array[middle] == val ) return middle;
 			else if( array[middle] < val ) low = middle + 1;
-		  else high = middle - 1;	
+			else high = middle - 1;	
 		}
 		return low;
 	};
